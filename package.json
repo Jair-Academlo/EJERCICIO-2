@@ -4,8 +4,7 @@
   "description": "repaso ejercicio-2 node.js",
   "main": "server.js",
   "scripts": {
-    "test": "null",
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
