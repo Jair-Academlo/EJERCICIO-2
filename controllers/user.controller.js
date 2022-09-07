@@ -18,7 +18,7 @@ const createUser = async (req, res) => {
 
 const AllUsers = async (req, res) => {
   try {
-    const users = await User.findAll();
+    const users = await User.findAll({ where: { status: 'Active' } });
 
     res.status(200).json({
       message: 'has traido con exito todos los usuarios creados',

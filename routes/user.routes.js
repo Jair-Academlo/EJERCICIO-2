@@ -1,4 +1,5 @@
 const express = require('express');
+const { createUserValidator } = require('../middlewares/validator.middleware');
 
 const {
   createUser,
@@ -10,7 +11,7 @@ const {
 
 const router = express.Router();
 
-router.post('/', createUser);
+router.post('/', createUserValidator, createUser);
 router.get('/', AllUsers);
 router.get('/:id', userById);
 router.patch('/:id', updateUser);
