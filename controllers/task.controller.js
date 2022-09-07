@@ -85,9 +85,39 @@ const actualizarTarea = async (req, res) => {
   }
 };
 
+const cancelarTarea = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const tareaCancelada = await Task.findOne({ where: { id } });
+
+    if (!tareaCancelada) {
+      return res.status(404).json({
+        message: 'La tarea no se pudo cancelar, Id no encontrado',
+        status: 'operacion fallida',
+      });
+    } else if (tareaCancelada.status == 'Active') {
+      await tareaCancelada.update({ status: 'cancelled' });
+    } else {
+      res.status(404).json({
+        message: 'Error esta tarea no se puede cancellar',
+        status: 'operacion fallida',
+      });
+    }
+
+    res.status(200).json({
+      message: 'La tarea se cancelo exitosamente',
+      status: 'operacion exitosa =)',
+      tareaCancelada,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   crearTarea,
   obtenerTareas,
   tareasViaStatus,
   actualizarTarea,
+  cancelarTarea,
 };
