@@ -10,7 +10,7 @@ db.sync()
   .then(() => console.log('datos sincronizados'.magenta))
   .catch(error => console.log(error));
 
-const PORT = 4300;
+const PORT = 4100;
 
 app.listen(PORT, () => {
   console.log(`el servidor se esta ejecutando en el puerto ${PORT}`.cyan);
