@@ -38,6 +38,11 @@ const createTaskValidator = [
     .withMessage('userId no puede estar vacio')
     .isNumeric()
     .withMessage('userId debe ser un numero'),
+  body('limitDate')
+    .notEmpty()
+    .withMessage('La fecha no puede estar vacia')
+    .matches(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/)
+    .withMessage('the date format must be  YYYY-MM-DD HH:mm:ss'),
 
   checkResult,
 ];
