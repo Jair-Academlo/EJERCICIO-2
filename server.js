@@ -1,6 +1,8 @@
 require('colors');
 const { app } = require('./app');
 const { db } = require('./utils/database');
+const { User } = require('./models/user.model');
+const { Task } = require('./models/taks.model');
 
 db.authenticate()
   .then(() => console.log('datos autenticados'.magenta))
@@ -9,6 +11,11 @@ db.authenticate()
 db.sync()
   .then(() => console.log('datos sincronizados'.magenta))
   .catch(error => console.log(error));
+
+//relacion muchos a uno
+
+User.hasMany(Task, { foreignKey: 'userId' });
+Task.belongsTo(User);
 
 const PORT = 4100;
 

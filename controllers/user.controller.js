@@ -1,4 +1,5 @@
 const { User } = require('../models/user.model');
+const { Task } = require('../models/taks.model');
 
 const createUser = async (req, res) => {
   try {
@@ -18,7 +19,10 @@ const createUser = async (req, res) => {
 
 const AllUsers = async (req, res) => {
   try {
-    const users = await User.findAll({ where: { status: 'Active' } });
+    const users = await User.findAll({
+      where: { status: 'Active' },
+      include: Task,
+    });
 
     res.status(200).json({
       message: 'has traido con exito todos los usuarios creados',
